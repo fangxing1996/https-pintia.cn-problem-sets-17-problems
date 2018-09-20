@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char ch[21],t[22]={'\0'};
+	int k,i,tmp=0,a[10]={0},b[10]={0};
+	scanf("%s",ch);
+	k=strlen(ch);
+	for(i=k-1;i>=0;i--){
+		a[ch[i]-'0']++;
+		if((2*(ch[i]-'0')+tmp)>=10){
+			t[i]=2*(ch[i]-'0')+tmp-10+'0';
+			tmp=1;
+			b[t[i]-'0']++;
+		}
+		else{
+			t[i]=2*(ch[i]-'0')+tmp+'0';
+			tmp=0;
+			b[t[i]-'0']++;
+		}
+	} 
+	if((ch[0]-'0'-5)>=0){
+		printf("No\n");
+		printf("1%s",t);
+		return 0;
+	}
+	else{
+		for(i=0;i<10;i++)
+		{
+			if(a[i]!=b[i]){
+				printf("No\n");
+				printf("%s",t);
+				return 0;
+			}
+			else if(i==9){
+				printf("Yes\n");
+				printf("%s",t);
+				return 0;
+			}
+		}
+	}
+}
